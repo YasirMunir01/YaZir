@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Food Ordering Website</title>
+	<!-- <link rel="stylesheet" href="style.css"> -->
+    <style>
+        body {
+	font-family: Arial, sans-serif;
+	margin: 0;
+}
+
+header {
+	background-color: #333;
+	color: #fff;
+	padding: 20px;
+}
+
+nav ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+nav li {
+	display: inline-block;
+	margin-right: 20px;
+}
+
+nav a {
+	color: #fff;
+	text-decoration: none;
+}
+
+main {
+	padding: 20px;
+}
+
+section {
+	margin-bottom: 40px;
+}
+
+h2 {
+	font-size: 28px;
+	margin-bottom: 10px;
+}
+
+.menu-item {
+	border: 1px solid #ccc;
+	padding: 10px;
+	margin-bottom: 20px;
+}
+
+.price {
+	float: right;
+}
+
+button {
+	background-color: #333;
+	color: #fff;
+	padding: 10px 20px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+form label {
+	display: block;
+	margin-bottom: 10px;
+}
+
+form input, form textarea {
+	padding: 5px;
+	border-radius: 5
+
+    </style>
+</head>
+<body>
+	<header>
+		<h1>Food Ordering Website</h1>
+		<nav>
+			<ul>
+				<li><a href="#about">About</a></li>
+				<li><a href="#menu">Menu</a></li>
+				<li><a href="#contact">Contact</a></li>
+			</ul>
+		</nav>
+	</header>
+	<main>
+		<section id="about">
+			<h2>About Us</h2>
+			<p>Welcome to our food ordering website. We specialize in delicious and healthy meals that can be ordered online and delivered to your doorstep.</p>
+		</section>
+		<section id="menu">
+			<h2>Menu</h2>
+			<div class="menu-item">
+				<h3>Grilled Salmon</h3>
+				<p>A grilled salmon fillet served with mixed greens and roasted vegetables.</p>
+				<span class="price">$15.99</span>
+				<button>Add to Cart</button>
+			</div>
+			<div class="menu-item">
+				<h3>Chicken Alfredo</h3>
+				<p>A classic Italian dish featuring chicken and fettuccine in a creamy Alfredo sauce.</p>
+				<span class="price">$12.99</span>
+				<button>Add to Cart</button>
+			</div>
+		</section>
+		<section id="contact">
+			<h2>Contact Us</h2>
+			<form action="submit-form.php" method="POST">
+				<label for="name">Name:</label>
+				<input type="text" name="name" required>
+				<label for="email">Email:</label>
+				<input type="email" name="email" required>
+				<label for="message">Message:</label>
+				<textarea name="message"></textarea>
+				<button type="submit">Send</button>
+			</form>
+		</section>
+	</main>
+	<footer>
+		<p>&copy; Food Ordering Website 2023</p>
+	</footer>
+    <script>
+        // Define an object to hold the menu items
+var menu = [
+	{
+		name: "Grilled Salmon",
+		description: "A grilled salmon fillet served with mixed greens and roasted vegetables.",
+		price: 15.99
+	},
+	{
+		name: "Chicken Alfredo",
+		description: "A classic Italian dish featuring chicken and fettuccine in a creamy Alfredo sauce.",
+		price: 12.99
+	}
+];
+
+// Define a function to display the menu items
+function displayMenu() {
+	var menuContainer = document.getElementById("menu");
+	menuContainer.innerHTML = "";
+
+	for (var i = 0; i < menu.length; i++) {
+		var menuItem = menu[i];
+		var menuItemElement = document.createElement("div");
+		menuItemElement.classList.add("menu-item");
+
+		var nameElement = document.createElement("h3");
+		nameElement.textContent = menuItem.name;
+		menuItemElement.appendChild(nameElement);
+
+		var descriptionElement = document.createElement("p");
+		descriptionElement.textContent = menuItem.description;
+		menuItemElement.appendChild(descriptionElement);
+
+		var priceElement = document.createElement("span");
+		priceElement.classList.add("price");
+		priceElement.textContent = "$" + menuItem.price.toFixed(2);
+		menuItemElement.appendChild(priceElement);
+
+		var buttonElement = document.createElement("button");
+		buttonElement.textContent = "Add to Cart";
+		buttonElement.addEventListener("click", function(event) {
+			var itemName = event.target.parentNode.querySelector("h3").textContent;
+			addToCart(itemName);
+		});
+		menuItemElement.appendChild(buttonElement);
+
+		menuContainer.appendChild(menuItemElement);
+	}
+}
+
+// Define a function to add an item to the cart
+function addToCart(itemName) {
+	var cartItemsContainer = document.getElementById("cart-items");
+	var cartItemElement = document.createElement("div");
+	cartItemElement.classList.add("cart-item");
+	cartItemElement.textContent = itemName;
+	cartItemsContainer.appendChild(cartItemElement);
+}
+
+// Call the displayMenu function to show the menu on page load
+displayMenu();
+
+        </script>
+</body>
+</html>
